@@ -1,0 +1,9 @@
+<mat-card *ngFor="let booking of bookings" class="booking-card">
+    <h3>{{ booking.title }}</h3>
+    <p><strong>Date:</strong> {{ booking.date }}</p>
+    <p><strong>Location:</strong> {{ booking.location }}</p>
+    <p><strong>Seats Booked:</strong> {{ booking.seats }}</p>
+  
+    <button mat-raised-button color="warn" (click)="cancelBooking(booking.id)">Cancel Booking</button>
+  </mat-card>
+  

@@ -1,0 +1,62 @@
+:host {
+    display: block;
+    padding: 1rem;
+    max-width: 900px;
+    margin: 0 auto;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  /* Booking Card Styling */
+  .booking-card {
+    margin-bottom: 1.5rem;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    background-color: #fafafa;
+    border-left: 5px solid #4caf50;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .booking-card:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Title */
+  .booking-card h3 {
+    margin-top: 0;
+    font-size: 1.5rem;
+    color: #388e3c;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Text and Labels */
+  .booking-card p {
+    margin: 0.4rem 0;
+    font-size: 1rem;
+    color: #333;
+  }
+  
+  .booking-card strong {
+    color: #000;
+  }
+  
+  /* Button */
+  .booking-card button {
+    margin-top: 1rem;
+  }
+  
+  /* Responsive */
+  @media (max-width: 600px) {
+    .booking-card {
+      padding: 1rem;
+    }
+  
+    .booking-card h3 {
+      font-size: 1.3rem;
+    }
+  
+    .booking-card p {
+      font-size: 0.95rem;
+    }
+  }
+  

@@ -1,0 +1,93 @@
+<!-- 📋 Add / Edit Event Form -->
+<mat-card>
+    <h2>{{ isEditing ? 'Edit Event' : 'Add Event' }}</h2>
+    <form [formGroup]="eventForm" (ngSubmit)="submit()">
+      <div class="form-fields">
+        <mat-form-field appearance="fill" class="full-width" *ngFor="let field of ['title', 'description', 'location', 'date']">
+          <mat-label>{{ field | titlecase }}</mat-label>
+          <input matInput [formControlName]="field" [type]="field === 'date' ? 'date' : 'text'" />
+          <mat-error *ngIf="eventForm.get(field)?.invalid && eventForm.get(field)?.touched">
+            {{ field | titlecase }} is required
+          </mat-error>
+        </mat-form-field>
+  
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Price</mat-label>
+          <input matInput type="number" formControlName="price" />
+          <mat-error *ngIf="eventForm.get('price')?.invalid && eventForm.get('price')?.touched">
+            Enter a valid price
+          </mat-error>
+        </mat-form-field>
+  
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Available Seats</mat-label>
+          <input matInput type="number" formControlName="availableSeats" />
+          <mat-error *ngIf="eventForm.get('availableSeats')?.invalid && eventForm.get('availableSeats')?.touched">
+            Must be at least 1 seat
+          </mat-error>
+        </mat-form-field>
+      </div>
+  
+      <button mat-raised-button color="primary" type="submit">
+        {{ isEditing ? 'Update' : 'Add' }}
+      </button>
+      <button *ngIf="isEditing" mat-button color="warn" type="button" (click)="cancelEdit()">
+        Cancel
+      </button>
+    </form>
+  </mat-card>
+  
+  <!-- 🔍 Search & Filter Options -->
+  <mat-card class="filter-card">
+    <mat-form-field class="full-width">
+      <input matInput placeholder="Search by title or location"
+        [value]="searchQuery"
+        (input)="searchQuery = $any($event.target).value; applyFilters()" />
+    </mat-form-field>
+  
+    <mat-form-field class="full-width">
+      <mat-label>Filter by Location</mat-label>
+      <mat-select [value]="filterLocation" (selectionChange)="filterLocation = $event.value; applyFilters()">
+        <mat-option value="">All</mat-option>
+        <mat-option *ngFor="let loc of uniqueLocations" [value]="loc">{{ loc }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  
+    <mat-form-field class="full-width">
+      <mat-label>Sort By</mat-label>
+      <mat-select [value]="sortBy" (selectionChange)="sortBy = $event.value; applyFilters()">
+        <mat-option value="date">Date</mat-option>
+        <mat-option value="price">Price</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </mat-card>
+  
+  <!-- 📋 Events Display -->
+  <h2>Events</h2>
+  <mat-card *ngFor="let event of paginatedEvents" class="event-card">
+    <h3>{{ event.title }}</h3>
+    <p>{{ event.description }}</p>
+    <p><strong>Location:</strong> {{ event.location }}</p>
+    <p><strong>Date:</strong> {{ event.date | date }}</p>
+    <p><strong>Price:</strong> ₹{{ event.price }}</p>
+    <p><strong>Seats:</strong> {{ event.availableSeats }}</p>
+  
+    <div class="event-actions">
+      <button mat-button color="primary" [routerLink]="['/event', event.id]">View</button>
+      <button mat-icon-button color="accent" (click)="edit(event)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button color="warn" (click)="delete(event.id)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </mat-card>
+  
+  <!-- 🔢 Pagination -->
+  <mat-paginator
+    [length]="filteredEvents.length"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="[5, 10, 20]"
+    (page)="onPageChange($event)">
+  </mat-paginator>
+  

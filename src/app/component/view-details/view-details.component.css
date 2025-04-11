@@ -1,0 +1,101 @@
+:host {
+    display: block;
+    padding: 1rem;
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  /* Main card */
+  mat-card {
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    margin-top: 2rem;
+  }
+  
+  /* Headline */
+  mat-card h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #3f51b5;
+    text-align: center;
+  }
+  
+  /* Event description */
+  mat-card p {
+    font-size: 1rem;
+    margin: 0.5rem 0;
+  }
+  
+  /* Bold labels */
+  mat-card strong {
+    color: #333;
+  }
+  
+  /* Map preview */
+  .mock-map {
+    width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    margin: 1rem 0 2rem 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  }
+  
+  /* Form styling */
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  mat-form-field {
+    width: 100%;
+  }
+  
+  /* Book button */
+  button {
+    align-self: flex-start;
+  }
+  
+  /* Responsive tweaks */
+  @media (max-width: 600px) {
+    mat-card {
+      padding: 1.2rem;
+    }
+  
+    mat-card h2 {
+      font-size: 1.5rem;
+    }
+  
+    .mock-map {
+      margin: 1rem 0;
+    }
+  
+    form {
+      gap: 0.75rem;
+    }
+  }
+  
+
+  .event-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+  }
+  
+  .event-card {
+    padding: 1rem;
+    word-wrap: break-word;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  mat-card-title,
+  mat-card-subtitle {
+    font-weight: 600;
+  }
+  
